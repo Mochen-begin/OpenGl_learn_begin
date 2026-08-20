@@ -32,13 +32,31 @@ link_directories(${GLFW_ROOT}/lib)
 set(GLAD_SRC ${GLAD_ROOT}/src/glad.c)
 
 
-# ====================== 程序1：001_glad_init GLAD单独初始化测试 ======================
-add_executable(001_glad_init
-    001_glad_init/Glad_learn.cpp
+# ====================== 程序1：001_glfw_init 窗口初始化示例 ======================
+# add_executable(生成的exe名称 源代码文件列表)
+add_executable(001_glfw_init
+    # 你的代码文件路径
+    001_glfw_init/Glfw_learn_begin.cpp
+    # 固定带上glad源码
+    ${GLAD_SRC}
+)
+# 给窗口程序链接所有依赖库
+# PRIVATE：仅当前程序内部使用这些库，不对外暴露
+target_link_libraries(001_glfw_init PRIVATE
+    glfw3          # GLFW窗口库
+    opengl32.lib   # Windows系统自带OpenGL驱动库
+    user32.lib     # Windows窗口系统必备依赖
+    gdi32.lib      # Windows图形界面依赖
+    shell32.lib    # Windows窗口交互依赖
+)
+
+# ====================== 程序2：002_glad_init GLAD单独初始化测试 ======================
+add_executable(002_glad_init
+    002_glad_init/Glad_learn.cpp
     ${GLAD_SRC}
 )
 # 和上面链接一模一样的依赖库
-target_link_libraries(001_glad_init PRIVATE
+target_link_libraries(002_glad_init PRIVATE
     glfw3
     opengl32.lib
     user32.lib
@@ -46,23 +64,6 @@ target_link_libraries(001_glad_init PRIVATE
     shell32.lib
 )
 
-# ====================== 程序2：002_glfw_init 窗口初始化示例 ======================
-# add_executable(生成的exe名称 源代码文件列表)
-add_executable(002_glfw_init
-    # 你的代码文件路径
-    002_glfw_init/Glfw_learn_begin.cpp
-    # 固定带上glad源码
-    ${GLAD_SRC}
-)
-# 给窗口程序链接所有依赖库
-# PRIVATE：仅当前程序内部使用这些库，不对外暴露
-target_link_libraries(002_glfw_init PRIVATE
-    glfw3          # GLFW窗口库
-    opengl32.lib   # Windows系统自带OpenGL驱动库
-    user32.lib     # Windows窗口系统必备依赖
-    gdi32.lib      # Windows图形界面依赖
-    shell32.lib    # Windows窗口交互依赖
-)
 
 #=========================程序3：003_viewport 视口===================================
 add_executable(003_viewport
@@ -82,6 +83,23 @@ add_executable(004_render_loop
   ${GLAD_SRC}
 )
 target_link_libraries(004_render_loop PRIVATE
+    glfw3 
+    opengl32.lib 
+    user32.lib 
+    gdi32.lib 
+    shell32.lib 
+)
+#==========================程序4：005_hello_trangle 渲染循环=============================
+add_executable(005_hello_trangle
+ #"005_hello_triangle/vertex1_input.cpp" #001
+ #"005_hello_triangle/vertex2_shader.cpp" #002
+ #"005_hello_triangle/vertex3_fragment.cpp"#003
+ #"005_hello_triangle/vertex4_triangle.cpp"#004
+ #"005_hello_triangle/vertex5_rectangle_EBO.cpp"#005
+ "005_hello_triangle/999test.cpp"
+ ${GLAD_SRC}
+)
+target_link_libraries(005_hello_trangle PRIVATE
     glfw3 
     opengl32.lib 
     user32.lib 

@@ -9,7 +9,6 @@ int main()
 	if (!glfwInit())
 	{
 		std::cout << "GLFW库初始化失败！" << std::endl;
-		system("pause");
 		return -1;
 	}
 	//限制glfw版本是3.3

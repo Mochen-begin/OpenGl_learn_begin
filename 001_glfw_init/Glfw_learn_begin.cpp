@@ -53,6 +53,9 @@ int main()
 * 告诉显卡：
 * 我创建的窗口，只启用 OpenGL 3.3 核心模式，禁用所有老式固定管线 API。
 * 
+* 
+* profile:个人资料、主页档案
+* core profile:核心规范集
 */
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -92,7 +95,7 @@ int main()
 * 3，断开 GLFW 和操作系统窗口系统的连接；
 * 4，清空内部全局状态、事件缓存。
 */
-	GLFWwindow* window = glfwCreateWindow(800, 600, "LeatnOpenGl", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGl", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
