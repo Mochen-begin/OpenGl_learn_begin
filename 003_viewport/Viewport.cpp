@@ -59,6 +59,7 @@ int main()
 * 1，窗口缩放时必须手动回调更新，否则图形拉伸变形
 * 2，视口大小可以超过窗口大小，但是超过的部分不显示，就是不会渲染，看不到，会导致画面被截断
 */
+
 /*glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 *					GLFW 设置帧缓冲尺寸回调
 *
@@ -74,7 +75,7 @@ int main()
 	//视口回溯要紧跟在窗口创建上下文后面，不用写在视口初始化后面
 
 
-/*glViewport
+/*glViewport////必须放在gladLoadGLLoader后面，这个是OpenGL的函数
 * 前两个参数是视口左下角的坐标值，后两个参数是视口的横向大小和竖向大小，就是宽和高，
 * 就是后面的参数才是高度
 * 

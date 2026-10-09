@@ -15,12 +15,17 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(GLFW_ROOT "E:/OpenGL_Libs/glfw_install")
 # GLAD OpenGL函数加载库安装根目录
 set(GLAD_ROOT "E:/OpenGL_Libs/glad_install")
-
+# glm根目录
+set(GLM_ROOT "E:/OpenGL_Libs/glm")
+# stb_image.h
+set(STB_IMAGE_ROOT "E:/OpenGl_learn/OpenGl_learn_begin/include")
 # ====================== 头文件搜索路径 ======================
 # 告诉编译器去哪里找 #include <glad.h> / #include <GLFW/glfw3.h>
 include_directories(
     ${GLFW_ROOT}/include
     ${GLAD_ROOT}/include
+    ${GLM_ROOT}/include
+    ${STB_IMAGE_ROOT}
 )
 
 # ====================== 静态库搜索路径 ======================
@@ -31,7 +36,28 @@ link_directories(${GLFW_ROOT}/lib)
 # glad.c 必须参与编译，所有程序都要带上它，单独提取出来复用
 set(GLAD_SRC ${GLAD_ROOT}/src/glad.c)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/executable)
 
+# ====================== 程序999：review ======================
+
+add_executable(999_review
+ "999review/main.cpp"
+ "E:/OpenGl_learn/OpenGl_learn_begin/Shader.cpp"
+ ${GLAD_SRC}
+)
+target_link_libraries(999_review PRIVATE
+    glfw3 
+    opengl32.lib 
+    user32.lib 
+    gdi32.lib 
+    shell32.lib 
+    
+)
+target_include_directories(999_review
+PRIVATE
+"E:/OpenGl_learn/OpenGl_learn_begin"
+${GLM_ROOT}
+)
 # ====================== 程序1：001_glfw_init 窗口初始化示例 ======================
 # add_executable(生成的exe名称 源代码文件列表)
 add_executable(001_glfw_init
@@ -89,7 +115,7 @@ target_link_libraries(004_render_loop PRIVATE
     gdi32.lib 
     shell32.lib 
 )
-#==========================程序4：005_hello_trangle 渲染循环=============================
+#==========================程序5：005_hello_triangle =============================
 add_executable(005_hello_trangle
  #"005_hello_triangle/vertex1_input.cpp" #001
  #"005_hello_triangle/vertex2_shader.cpp" #002
@@ -105,4 +131,57 @@ target_link_libraries(005_hello_trangle PRIVATE
     user32.lib 
     gdi32.lib 
     shell32.lib 
+)
+#==========================程序6：006_shaders=============================
+add_executable(006_shaders
+ #"006_shaders/shaders_learn.cpp"
+ #"006_shaders/02_Uniform.cpp"
+ "006_shaders/03_More_attributes.cpp"
+
+ ${GLAD_SRC}
+)
+target_link_libraries(006_shaders PRIVATE
+    glfw3 
+    opengl32.lib 
+    user32.lib 
+    gdi32.lib 
+    shell32.lib 
+    
+)
+target_include_directories(006_shaders PRIVATE
+"E:/OpenGl_learn/OpenGl_learn_begin"
+)
+#==========================程序7：007_Textures =============================
+add_executable(007_Textures
+ "007_Textures/textures.cpp"
+ #"007_Textures/999test.cpp"
+ "E:/OpenGl_learn/OpenGl_learn_begin/Shader.cpp"
+ ${GLAD_SRC}
+)
+target_link_libraries(007_Textures PRIVATE
+    glfw3 
+    opengl32.lib 
+    user32.lib 
+    gdi32.lib 
+    shell32.lib 
+)
+target_include_directories(007_Textures PRIVATE
+"E:/OpenGl_learn/OpenGl_learn_begin"
+
+)
+#=========================程序8：008_transformations==========================
+add_executable(008_transformations
+    "008_transformations/transformations.cpp"
+     "E:/OpenGl_learn/OpenGl_learn_begin/Shader.cpp"
+    ${GLAD_SRC}
+)
+target_link_libraries(008_transformations PRIVATE
+    glfw3
+    opengl32.lib
+    user32.lib 
+    gdi32.lib 
+    shell32.lib 
+)
+target_include_directories(008_transformations PRIVATE
+ "E:/OpenGl_learn/OpenGl_learn_begin"
 )
