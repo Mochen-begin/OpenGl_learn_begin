@@ -23,8 +23,8 @@ set(STB_IMAGE_ROOT "E:/OpenGl_learn/OpenGl_learn_begin/include")
 # 告诉编译器去哪里找 #include <glad.h> / #include <GLFW/glfw3.h>
 include_directories(
     ${GLFW_ROOT}/include
-    ${GLAD_ROOT}/include
-    ${GLM_ROOT}/include
+    ${GLAD_ROOT}/include        #这里的/是起拼接作用的，比如这个就代表是"E:/OpenGL_Libs/glad_install/include"
+    ${GLM_ROOT}
     ${STB_IMAGE_ROOT}
 )
 
@@ -172,6 +172,7 @@ target_include_directories(007_Textures PRIVATE
 #=========================程序8：008_transformations==========================
 add_executable(008_transformations
     "008_transformations/transformations.cpp"
+    #"008_transformations/test.cpp"
      "E:/OpenGl_learn/OpenGl_learn_begin/Shader.cpp"
     ${GLAD_SRC}
 )
@@ -185,3 +186,19 @@ target_link_libraries(008_transformations PRIVATE
 target_include_directories(008_transformations PRIVATE
  "E:/OpenGl_learn/OpenGl_learn_begin"
 )
+#=========================程序8：008_transformations==========================
+add_executable(009_CoordinateSystems
+"009_CoordinateSystems/CoordinateSystems.cpp"
+"E:/OpenGl_learn/OpenGl_learn_begin/Shader.cpp"
+    ${GLAD_SRC}
+)
+target_link_libraries(009_CoordinateSystems PRIVATE 
+    glfw3
+    opengl32.lib
+    user32.lib
+    gdi32.lib 
+    shell32.lib 
+ )
+ target_include_directories(009_CoordinateSystems PRIVATE 
+ "E:/OpenGl_learn/OpenGl_learn_begin"
+ )

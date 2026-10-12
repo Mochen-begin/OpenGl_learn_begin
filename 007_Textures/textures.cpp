@@ -313,7 +313,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//加载并生成纹理
 	int width, height, nrChannels;
-	stbi_set_flip_vertically_on_load(true);//防止上下颠倒
+	stbi_set_flip_vertically_on_load(true);//防止上下颠倒//flip 翻转 vertically副词，垂直地、上下方向 on 在…… 之时 load 加载
 	unsigned char* data1 = stbi_load("E:/OpenGl_learn/OpenGl_learn_begin/textures/container.jpg", &width, &height, &nrChannels,0);
 	if (data1)
 	{
@@ -323,6 +323,8 @@ int main()
 	else
 	{
 		std::cout << "Failed to load texture" << std::endl;
+		glfwTerminate();
+		return -1;
 	}
 	//用完记得把读取的图片数据删掉
 	stbi_image_free(data1);
